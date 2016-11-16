@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">RxJava_Dagger2</string>
+    <string name="news_title">新闻</string>
+    <string name="photos">图片</string>
+    <string name="drawer_text">路一直都在,在寻找着</string>
+</resources>
