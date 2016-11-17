@@ -3,4 +3,6 @@
     <string name="news_title">新闻</string>
     <string name="photos">图片</string>
     <string name="drawer_text">路一直都在,在寻找着</string>
+    <string name="open_drawer_layout">open_drawer_layout</string>
+    <string name="close_drawer_layout">close_drawer_layout</string>
 </resources>
