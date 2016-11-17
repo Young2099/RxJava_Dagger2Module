@@ -25,6 +25,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import greendao.NewsChannelTable;
 
 public class NewsActivity extends BaseActivity implements NewsView {
     NewsPresenterImpl mPresenter = new NewsPresenterImpl();
@@ -41,9 +42,7 @@ public class NewsActivity extends BaseActivity implements NewsView {
     ViewPager mViewPager;
     @BindView(R.id.tab)
     TabLayout mTab;
-
-    private String[] titles= new String[]{"头条", "科技", "财经"};
-
+    private String[] titles = {"头条","科技","财经"};
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +94,17 @@ public class NewsActivity extends BaseActivity implements NewsView {
     }
 
     @Override
+    public void initChannelData(List<NewsChannelTable> data) {
+        List<String> list = new ArrayList<>();
+        List<Fragment> fragmentsList = new ArrayList<>();
+        for ( NewsChannelTable title : data){
+            list.add(title.getNewsChannelName());
+            fragmentsList.add(new NewsFragment());
+        }
+    }
+
+
+    @Override
     public void showProgress() {
 
     }
@@ -108,4 +118,5 @@ public class NewsActivity extends BaseActivity implements NewsView {
     public void showErrMessage() {
 
     }
+
 }
