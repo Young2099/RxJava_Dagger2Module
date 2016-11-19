@@ -6,7 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.demo.panguso.rxjava_dagger2.BuildConfig;
 import com.demo.panguso.rxjava_dagger2.common.Contants;
+import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+import com.squareup.leakcanary.RefWatcherBuilder;
 
 import de.greenrobot.dao.query.QueryBuilder;
 import greendao.DaoMaster;
@@ -25,7 +27,7 @@ public class App extends Application {
         return mContext;
     }
 
-    public RefWatcher refWatcher;
+    private RefWatcher refWatcher;
 
     public static RefWatcher getRefWatcher(Context context) {
         App application = (App) context.getApplicationContext();
@@ -35,9 +37,20 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        mContext = this;
-        setupDatabase();
+        if (BuildConfig.DEBUG) {
+            if (LeakCanary.isInAnalyzerProcess(this)) {
+                return;
+            }
+            refWatcher = LeakCanary.install(this);
+            mContext = this;
+            setupDatabase();
+        } else {
+            //release用这个方法.LeakCanary1.5方法改变了
+            refWatcher = new RefWatcherBuilder<>().build();
+        }
+
     }
+
 
     private void setupDatabase() {
         // 通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper 对象。
