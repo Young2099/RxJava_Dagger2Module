@@ -6,6 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.demo.panguso.rxjava_dagger2.BuildConfig;
 import com.demo.panguso.rxjava_dagger2.common.Contants;
+import com.demo.panguso.rxjava_dagger2.di.component.AppComponent;
+import com.demo.panguso.rxjava_dagger2.di.component.DaggerAppComponent;
+import com.demo.panguso.rxjava_dagger2.di.module.AppModule;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.squareup.leakcanary.RefWatcherBuilder;
@@ -34,6 +37,8 @@ public class App extends Application {
         return application.refWatcher;
     }
 
+    private AppComponent mAppComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -44,13 +49,20 @@ public class App extends Application {
             refWatcher = LeakCanary.install(this);
             mContext = this;
             setupDatabase();
+            //AppComponent连接module和inject
+            mAppComponent = DaggerAppComponent.builder()
+                    .appModule(new AppModule(this))
+                    .build();
         } else {
             //release用这个方法.LeakCanary1.5方法改变了
             refWatcher = new RefWatcherBuilder<>().build();
         }
 
-    }
 
+    }
+    public AppComponent getmAppComponent(){
+        return mAppComponent;
+    }
 
     private void setupDatabase() {
         // 通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper 对象。

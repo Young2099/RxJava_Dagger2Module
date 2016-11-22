@@ -5,4 +5,6 @@
     <string name="drawer_text">路一直都在,在寻找着</string>
     <string name="open_drawer_layout">open_drawer_layout</string>
     <string name="close_drawer_layout">close_drawer_layout</string>
+    <string name="my_channel">我的频道</string>
+    <string name="news_more_channel_rv">更多频道</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.demo.panguso.rxjava_dagger2.mvp.ui.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -11,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.demo.panguso.rxjava_dagger2.R;
@@ -25,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import greendao.NewsChannelTable;
 
 public class NewsActivity extends BaseActivity implements NewsView {
@@ -42,7 +45,8 @@ public class NewsActivity extends BaseActivity implements NewsView {
     ViewPager mViewPager;
     @BindView(R.id.tab)
     TabLayout mTab;
-    private String[] titles = {"头条","科技","财经"};
+
+    //    private String[] titles = {"头条","科技","财经"};
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,19 +58,29 @@ public class NewsActivity extends BaseActivity implements NewsView {
         initView();
     }
 
-    private void initView() {
-        initFragment();
+    @Override
+    public int initLayout() {
+        return 0;
+    }
+
+    @Override
+    public void initView() {
+
     }
 
 
-    private void initFragment() {
-        List<Fragment> newsFragmentList = new ArrayList<>();
-        List<String> list = new ArrayList<>();
-        for(String t:titles){
-            newsFragmentList.add(new NewsFragment());
-            list.add(t);
+    @OnClick({R.id.fab, R.id.iv_add})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_add:
+                Intent intent = new Intent(this, NewsChannelActivity.class);
+                startActivity(intent);
+                break;
         }
-        NewsFragmentPageAdapter adapter = new NewsFragmentPageAdapter(getSupportFragmentManager(),newsFragmentList,list);
+    }
+
+    private void initFragment(List<String> list, List<Fragment> fragmentsList) {
+        NewsFragmentPageAdapter adapter = new NewsFragmentPageAdapter(getSupportFragmentManager(), fragmentsList, list);
         mViewPager.setAdapter(adapter);
         mTab.setupWithViewPager(mViewPager);
     }
@@ -97,10 +111,11 @@ public class NewsActivity extends BaseActivity implements NewsView {
     public void initChannelData(List<NewsChannelTable> data) {
         List<String> list = new ArrayList<>();
         List<Fragment> fragmentsList = new ArrayList<>();
-        for ( NewsChannelTable title : data){
+        for (NewsChannelTable title : data) {
             list.add(title.getNewsChannelName());
             fragmentsList.add(new NewsFragment());
         }
+        initFragment(list, fragmentsList);
     }
 
 

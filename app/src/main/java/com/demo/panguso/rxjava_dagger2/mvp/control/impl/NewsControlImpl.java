@@ -1,7 +1,7 @@
 package com.demo.panguso.rxjava_dagger2.mvp.control.impl;
 
 
-import android.util.Log;
+import android.os.Looper;
 
 import com.demo.panguso.rxjava_dagger2.mvp.control.NewsControl;
 import com.demo.panguso.rxjava_dagger2.mvp.listener.RequestCallback;
@@ -22,9 +22,28 @@ import rx.schedulers.Schedulers;
 
 public class NewsControlImpl implements NewsControl<List<NewsChannelTable>> {
 
+    /**
+     * 判断是否在在主线程
+     *
+     * @return
+     */
+    public static boolean isInMainThread() {
+        return Looper.myLooper() == Looper.getMainLooper();
+    }
 
     @Override
     public Subscription initChannelDatas(final RequestCallback<List<NewsChannelTable>> callBack) {
+//        NewsChannelTabMannager.initDB();
+//        final List<NewsChannelTable> list = NewsChannelTabMannager.loadNewsChannelsMine();
+//        Log.e("TAG", "////" + list.size());
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                callBack.success(list);
+//                Log.i("TAG", "Test In NOT in MainThread isMainThread="
+//                        + isInMainThread());
+//            }
+//        }).start();
         return Observable.create(new Observable.OnSubscribe<List<NewsChannelTable>>() {
             @Override
             public void call(Subscriber<? super List<NewsChannelTable>> subscriber) {
@@ -42,13 +61,12 @@ public class NewsControlImpl implements NewsControl<List<NewsChannelTable>> {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        callBack.failure("网络连接失败");
                     }
 
                     @Override
                     public void onNext(List<NewsChannelTable> newsChannelTables) {
                         callBack.success(newsChannelTables);
-                        Log.e("TAG","newLLL"+newsChannelTables.size());
                     }
                 });
     }
