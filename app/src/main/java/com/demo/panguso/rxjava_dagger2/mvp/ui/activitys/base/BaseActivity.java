@@ -19,17 +19,17 @@ public abstract class BaseActivity extends AppCompatActivity {
     public abstract int initLayout();
 
     public abstract void initView();
-    private ActivityComponent mActivityComponent;
+    public ActivityComponent mActivityComponent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initLayout();
-        initView();
         mActivityComponent = DaggerActivityComponent.builder()
                 .appComponent(((App)getApplication()).getmAppComponent())
                 .activityModule(new ActivityModule(this))
                 .build();
+        initLayout();
+        initView();
 
     }
 

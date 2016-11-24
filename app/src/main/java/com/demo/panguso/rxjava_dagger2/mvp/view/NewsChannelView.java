@@ -11,5 +11,5 @@ import greendao.NewsChannelTable;
  */
 
 public interface NewsChannelView extends BaseView{
-    void initRecyclerViews(List<NewsChannelTable> list);
+    void initRecyclerViews(List<NewsChannelTable> newsChannelTablesMine,List<NewsChannelTable> newsChannelTablesMore);
 }

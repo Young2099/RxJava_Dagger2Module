@@ -9,6 +9,8 @@ import com.demo.panguso.rxjava_dagger2.repository.NewsChannelTabMannager;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import greendao.NewsChannelTable;
 import rx.Observable;
 import rx.Subscriber;
@@ -20,7 +22,11 @@ import rx.schedulers.Schedulers;
  * Created by ${yangfang} on 2016/11/17.
  */
 
-public class NewsControlImpl implements NewsControl<List<NewsChannelTable>> {
+public class NewsControlImpl implements NewsControl<List<NewsChannelTable>>{
+
+    @Inject
+    public NewsControlImpl() {
+    }
 
     /**
      * 判断是否在在主线程

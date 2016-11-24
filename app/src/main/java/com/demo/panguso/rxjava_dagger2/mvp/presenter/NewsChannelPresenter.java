@@ -1,11 +1,10 @@
 package com.demo.panguso.rxjava_dagger2.mvp.presenter;
 
 import com.demo.panguso.rxjava_dagger2.mvp.presenter.base.BasePresenter;
-import com.demo.panguso.rxjava_dagger2.mvp.view.NewsChannelView;
 
 /**
  * Created by ${yangfang} on 2016/11/21.
  */
 
-public interface NewsChannelPresenter extends BasePresenter<NewsChannelView> {
+public interface NewsChannelPresenter extends BasePresenter {
 }

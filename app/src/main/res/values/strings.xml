@@ -7,4 +7,5 @@
     <string name="close_drawer_layout">close_drawer_layout</string>
     <string name="my_channel">我的频道</string>
     <string name="news_more_channel_rv">更多频道</string>
+    <string name="db_error">数据加载错误</string>
 </resources>

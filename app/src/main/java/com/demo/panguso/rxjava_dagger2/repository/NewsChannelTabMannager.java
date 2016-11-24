@@ -50,4 +50,11 @@ public class NewsChannelTabMannager {
                 .orderAsc(NewsChannelTableDao.Properties.NewsChannelIndex).build();
         return newsChannelTableQueryBuilder.list();
     }
+
+    public static List<NewsChannelTable> loadNewsChannelsMore() {
+        Query<NewsChannelTable> builder = App.getNewsChannelTableDao()
+                .queryBuilder().where(NewsChannelTableDao.Properties.NewsChannelSelect.eq(false))
+                .orderAsc(NewsChannelTableDao.Properties.NewsChannelIndex).build();
+        return builder.list();
+    }
 }

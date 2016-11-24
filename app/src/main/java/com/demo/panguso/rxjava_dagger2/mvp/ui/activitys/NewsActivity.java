@@ -25,13 +25,17 @@ import com.demo.panguso.rxjava_dagger2.mvp.view.NewsView;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import greendao.NewsChannelTable;
 
 public class NewsActivity extends BaseActivity implements NewsView {
-    NewsPresenterImpl mPresenter = new NewsPresenterImpl();
+
+    @Inject
+    NewsPresenterImpl mPresenter;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -65,7 +69,7 @@ public class NewsActivity extends BaseActivity implements NewsView {
 
     @Override
     public void initView() {
-
+        mActivityComponent.inject(this);
     }
 
 
