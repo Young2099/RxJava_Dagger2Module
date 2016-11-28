@@ -37,8 +37,8 @@ public class NewsChannelPresenterImpl extends BasePresenterImpl<NewsChannelView,
     @Override
     public void success(Map<Integer, List<NewsChannelTable>> data) {
         super.success(data);
-        mView.initRecyclerViews(data.get(Contants.NEWS_CHANNEL_MINE), data.get(Contants.NEWS_CHANNEL_MORE));
         Log.e("NewsChannelPresenter","////"+data.size());
+        mView.initRecyclerViews(data.get(Contants.NEWS_CHANNEL_MINE), data.get(Contants.NEWS_CHANNEL_MORE));
     }
 
     @Override

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<TextView
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
     android:id="@+id/tv_channel"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
-</LinearLayout>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/margin_item"
+    android:background="@drawable/bg_item_news_channel"
+    android:gravity="center"
+    android:textColor="@color/primary_text"
+    android:textSize="@dimen/big_small"
+    tools:text="头条">
+
+</TextView>

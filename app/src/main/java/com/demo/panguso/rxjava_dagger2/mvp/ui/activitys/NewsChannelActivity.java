@@ -38,8 +38,12 @@ public class NewsChannelActivity extends BaseActivity implements NewsChannelView
     }
 
     @Override
-    public void initView() {
+    protected void initInject() {
         mActivityComponent.inject(this);
+    }
+
+    @Override
+    public void initView() {
         mNewsChannelPresenter.attachView(this);
         mNewsChannelPresenter.onCreate();
     }
@@ -56,13 +60,12 @@ public class NewsChannelActivity extends BaseActivity implements NewsChannelView
 
     @Override
     public void showErrMessage() {
-
     }
 
     @Override
     public void initRecyclerViews(List<NewsChannelTable> newsChannelTablesMine, List<NewsChannelTable> newsChannelTablesMore) {
+        Log.e("NewsChannelTable", "dddd" + newsChannelTablesMine.size());
         initRecyclerViewMineAndMore(newsChannelTablesMine, newsChannelTablesMore);
-        Log.e("NewsChannelTable","dddd"+newsChannelTablesMine.size());
     }
 
     private void initRecyclerViewMineAndMore(List<NewsChannelTable> newsChannelTablesMine, List<NewsChannelTable> newsChannelTablesMore) {
@@ -71,6 +74,7 @@ public class NewsChannelActivity extends BaseActivity implements NewsChannelView
     }
 
     private void initRecyclerViews(RecyclerView recyclerview, List<NewsChannelTable> newsChannelTable, boolean isChannelMine) {
+        recyclerview.setHasFixedSize(true);
         recyclerview.setLayoutManager(new GridLayoutManager(this, 4, GridLayoutManager.VERTICAL, false));
         recyclerview.setItemAnimator(new DefaultItemAnimator());
         if (isChannelMine) {

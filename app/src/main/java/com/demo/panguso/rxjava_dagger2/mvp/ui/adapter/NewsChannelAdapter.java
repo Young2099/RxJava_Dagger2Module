@@ -1,6 +1,7 @@
 package com.demo.panguso.rxjava_dagger2.mvp.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import greendao.NewsChannelTable;
 public class NewsChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private List<NewsChannelTable> data = new ArrayList<>();
     public NewsChannelAdapter(List<NewsChannelTable> data) {
+        Log.e("TAG","data:"+data.size());
         this.data = data;
     }
 

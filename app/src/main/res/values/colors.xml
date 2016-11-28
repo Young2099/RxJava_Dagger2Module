@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF5252</color>
     <color name="primary_text">#000000</color>
     <color name="container_background">#ffffff</color>
+    <color name="alpha_05_black">#0D000000</color>
 </resources>

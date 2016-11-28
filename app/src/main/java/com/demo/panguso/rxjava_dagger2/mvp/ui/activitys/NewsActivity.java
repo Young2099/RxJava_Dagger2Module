@@ -1,7 +1,6 @@
 package com.demo.panguso.rxjava_dagger2.mvp.ui.activitys;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -28,7 +27,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import greendao.NewsChannelTable;
 
@@ -50,26 +48,29 @@ public class NewsActivity extends BaseActivity implements NewsView {
     @BindView(R.id.tab)
     TabLayout mTab;
 
-    //    private String[] titles = {"头条","科技","财经"};
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news);
-        ButterKnife.bind(this);
-        mPresenter.onCreate();
-        mPresenter.attachView(this);
-        initDrawerLayout();
-        initView();
-    }
+//    //    private String[] titles = {"头条","科技","财经"};
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_news);
+//
+//    }
 
     @Override
     public int initLayout() {
-        return 0;
+        return R.layout.activity_news;
+    }
+
+    @Override
+    protected void initInject() {
+        mActivityComponent.inject(this);
     }
 
     @Override
     public void initView() {
-        mActivityComponent.inject(this);
+        mPresenter.onCreate();
+        mPresenter.attachView(this);
+        initDrawerLayout();
     }
 
 

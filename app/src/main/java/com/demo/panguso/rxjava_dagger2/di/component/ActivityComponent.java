@@ -13,7 +13,6 @@ import dagger.Component;
 @PerActivity
 @Component(dependencies = AppComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {
-//    Activity geActivity();
 
     void inject(NewsActivity newsActivity);
 
